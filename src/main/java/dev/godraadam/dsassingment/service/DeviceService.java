@@ -14,10 +14,10 @@ import dev.godraadam.dsassingment.repo.UserRepo;
 
 @Service
 public class DeviceService {
-    
+
     @Autowired
     private DeviceRepo deviceRepo;
-    
+
     @Autowired
     private UserRepo userRepo;
 

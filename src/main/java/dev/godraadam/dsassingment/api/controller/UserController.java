@@ -31,7 +31,7 @@ public class UserController {
 
     @Autowired
     private UserLoginAssembler userLoginAssembler;
-    
+
     @GetMapping("admin/api/user/{id}")
     public UserDetailsDTO getUserById(@PathVariable Long id) {
         return userDetailsAssembler.createDTO(userService.findById(id));

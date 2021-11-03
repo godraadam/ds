@@ -24,5 +24,5 @@ public class UserLoginAssembler implements GeneralAssembler<AppUser, UserLoginDT
         // We don't need backwards mapping
         return null;
     }
-    
+
 }

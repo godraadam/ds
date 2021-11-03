@@ -8,8 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserRegisterDTO {
-    
+
     private AccountDetails accountDetails;
     private UserDetails userDetails;
 }
-

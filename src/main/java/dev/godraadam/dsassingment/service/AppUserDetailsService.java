@@ -19,13 +19,10 @@ public class AppUserDetailsService implements UserDetailsService {
         try {
             AppUser user = userService.findByEmail(email);
             return org.springframework.security.core.userdetails.User.builder()
-            .username(user.getAccountDetails().getEmail())
-            .password(user.getAccountDetails().getPassword())
-            .roles(user.getAccountDetails().getRole().name())
-            .build();
+                    .username(user.getAccountDetails().getEmail()).password(user.getAccountDetails().getPassword())
+                    .roles(user.getAccountDetails().getRole().name()).build();
         } catch (UserNotFoundException e) {
             throw e;
         }
     }
 }
-

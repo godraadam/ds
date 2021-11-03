@@ -6,7 +6,7 @@ import dev.godraadam.dsassingment.api.dto.UserDetailsDTO;
 import dev.godraadam.dsassingment.model.AppUser;
 
 @Component
-public class UserDetailsAssembler  implements GeneralAssembler<AppUser, UserDetailsDTO> {
+public class UserDetailsAssembler implements GeneralAssembler<AppUser, UserDetailsDTO> {
 
     @Override
     public AppUser createModel(UserDetailsDTO dto) {
@@ -23,5 +23,5 @@ public class UserDetailsAssembler  implements GeneralAssembler<AppUser, UserDeta
         dto.setUserDetails(model.getUserDetails());
         return dto;
     }
-    
+
 }

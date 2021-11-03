@@ -8,6 +8,7 @@ import dev.godraadam.dsassingment.model.BaseModel;
 public interface GeneralAssembler<M extends BaseModel, D> {
 
     M createModel(D dto);
+
     D createDTO(M model);
 
     default List<M> createModelList(List<D> dtos) {

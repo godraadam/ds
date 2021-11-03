@@ -24,11 +24,13 @@ public class UserService {
 
     public AppUser login(AppUser userToLogin) throws UserNotFoundException, InvalidCredentialsException {
         // check email
-        Optional<AppUser> userFromRepoOptional = userRepo.findByAccountDetails_Email(userToLogin.getAccountDetails().getEmail());
+        Optional<AppUser> userFromRepoOptional = userRepo
+                .findByAccountDetails_Email(userToLogin.getAccountDetails().getEmail());
         AppUser userFromRepo = userFromRepoOptional.orElseThrow(UserNotFoundException::new);
 
         // check password
-        if (!passwordEncoder.matches(userToLogin.getAccountDetails().getPassword(), userFromRepo.getAccountDetails().getPassword())) {
+        if (!passwordEncoder.matches(userToLogin.getAccountDetails().getPassword(),
+                userFromRepo.getAccountDetails().getPassword())) {
             throw new InvalidCredentialsException();
         }
         return userFromRepo;

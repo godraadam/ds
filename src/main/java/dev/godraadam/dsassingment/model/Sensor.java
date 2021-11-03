@@ -18,7 +18,7 @@ public class Sensor extends BaseModel {
     private String description;
     private Double maxValue;
 
-    //list of measurement records (one every hour)
+    // list of measurement records (one every hour)
     @OneToMany(mappedBy = "sensor")
     private List<Measurement> measurements;
 }

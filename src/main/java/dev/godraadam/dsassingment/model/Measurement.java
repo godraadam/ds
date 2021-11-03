@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 public class Measurement extends BaseModel {
     private LocalDateTime timestamp;
-    private Double value; //kWh, accumulative
+    private Double value; // kWh, accumulative
     @ManyToOne
     @JoinColumn(name = "sensor_id")
     private Sensor sensor;

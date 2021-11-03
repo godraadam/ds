@@ -7,5 +7,5 @@ import dev.godraadam.dsassingment.model.Sensor;
 
 @Repository
 public interface SensorRepo extends JpaRepository<Sensor, Long> {
-    
+
 }

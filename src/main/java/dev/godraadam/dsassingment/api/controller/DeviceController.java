@@ -16,7 +16,6 @@ import dev.godraadam.dsassingment.service.DeviceService;
 @RestController
 public class DeviceController {
 
-
     @Autowired
     private DeviceAssembler deviceAssembler;
 
@@ -28,7 +27,7 @@ public class DeviceController {
         return deviceAssembler.createDTO(deviceService.addDeviceForUser(userId, deviceAssembler.createModel(dto)));
     }
 
-    @GetMapping("/api/device/ls/{userId}") 
+    @GetMapping("/api/device/ls/{userId}")
     public List<DeviceDTO> getAllDevicesForUser(@PathVariable Long userId) {
         return deviceAssembler.createDTOList(deviceService.getAllDevicesForUser(userId));
     }

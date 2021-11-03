@@ -27,5 +27,5 @@ public class DeviceAssembler implements GeneralAssembler<Device, DeviceDTO> {
         dto.setUserId(model.getOwner().getId());
         return dto;
     }
-    
+
 }

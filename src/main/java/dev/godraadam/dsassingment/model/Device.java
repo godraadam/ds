@@ -14,7 +14,6 @@ import lombok.Setter;
 @Setter
 public class Device extends BaseModel {
 
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private AppUser owner;

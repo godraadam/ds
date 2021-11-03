@@ -7,5 +7,5 @@ import dev.godraadam.dsassingment.model.Measurement;
 
 @Repository
 public interface MeasurementRepo extends JpaRepository<Measurement, Long> {
-    
+
 }

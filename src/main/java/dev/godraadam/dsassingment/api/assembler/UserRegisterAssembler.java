@@ -22,5 +22,5 @@ public class UserRegisterAssembler implements GeneralAssembler<AppUser, UserRegi
         // Will probably never need backwards mapping
         return null;
     }
-    
+
 }

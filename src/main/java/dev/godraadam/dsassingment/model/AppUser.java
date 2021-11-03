@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 public class AppUser extends BaseModel {
-    
+
     @Embedded
     private AccountDetails accountDetails;
     @Embedded
