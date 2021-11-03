@@ -6,6 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DeviceDTO {
+    private Long deviceId;
     private Long userId;
     private String description;
     private Double maxConsumption;

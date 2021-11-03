@@ -12,6 +12,7 @@ public class DeviceAssembler implements GeneralAssembler<Device, DeviceDTO> {
     public Device createModel(DeviceDTO dto) {
         Device device = new Device();
         device.setDescription(dto.getDescription());
+        device.setId(dto.getDeviceId());
         // maybe maxConsumption?
         return device;
     }
@@ -25,6 +26,7 @@ public class DeviceAssembler implements GeneralAssembler<Device, DeviceDTO> {
         dto.setMaxConsumption(model.getMaxConsumption());
         dto.setSensorId(model.getSensor().getId());
         dto.setUserId(model.getOwner().getId());
+        dto.setDeviceId(model.getId());
         return dto;
     }
 

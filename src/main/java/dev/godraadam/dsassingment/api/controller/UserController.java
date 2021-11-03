@@ -57,7 +57,7 @@ public class UserController {
         userService.deleteUserById(id);
     }
 
-    @PutMapping
+    @PutMapping("/api/user")
     public UserDetailsDTO updateUser(@RequestBody UserDetailsDTO dto) {
         return userDetailsAssembler.createDTO(userService.updateUser(userDetailsAssembler.createModel(dto)));
     }
