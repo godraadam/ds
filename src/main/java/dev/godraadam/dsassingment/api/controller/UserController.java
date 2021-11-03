@@ -42,6 +42,11 @@ public class UserController {
         return userDetailsAssembler.createDTO(userService.registerUser(userRegisterAssembler.createModel(dto)));
     }
 
+    @PostMapping("/admin/register")
+    public UserDetailsDTO registerAdmin(@RequestBody UserRegisterDTO dto) {
+        return userDetailsAssembler.createDTO(userService.registerAdmin(userRegisterAssembler.createModel(dto)));
+    }
+
     @PostMapping("/login")
     public UserDetailsDTO login(@RequestBody UserLoginDTO dto) {
         return userDetailsAssembler.createDTO(userService.login(userLoginAssembler.createModel(dto)));

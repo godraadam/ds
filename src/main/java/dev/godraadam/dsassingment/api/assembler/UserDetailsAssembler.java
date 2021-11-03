@@ -20,6 +20,7 @@ public class UserDetailsAssembler implements GeneralAssembler<AppUser, UserDetai
     public UserDetailsDTO createDTO(AppUser model) {
         UserDetailsDTO dto = new UserDetailsDTO();
         dto.setId(model.getId());
+        dto.setRole(model.getAccountDetails().getRole());
         dto.setUserDetails(model.getUserDetails());
         return dto;
     }
