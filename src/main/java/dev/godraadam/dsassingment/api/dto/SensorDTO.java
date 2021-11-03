@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SensorDTO {
-    
+
     private Long sensorId;
     private Long deviceId;
     private String description;

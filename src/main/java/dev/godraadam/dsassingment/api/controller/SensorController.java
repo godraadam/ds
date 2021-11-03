@@ -26,7 +26,7 @@ public class SensorController {
         return sensorAssembler.createDTO(sensorService.getSensorForDevice(deviceId));
     }
 
-    @PostMapping("/admin/api/sensor/add/deviceId") 
+    @PostMapping("/admin/api/sensor/add/deviceId")
     public SensorDTO addSensorToDevice(@RequestBody SensorDTO dto, @PathVariable Long deviceId) {
         return sensorAssembler.createDTO(sensorService.addSensorToDevice(sensorAssembler.createModel(dto), deviceId));
     }

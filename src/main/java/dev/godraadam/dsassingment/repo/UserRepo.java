@@ -9,5 +9,7 @@ import dev.godraadam.dsassingment.model.AppUser;
 
 @Repository
 public interface UserRepo extends JpaRepository<AppUser, Long> {
+
+    @SuppressWarnings("checkstyle:MethodName")
     Optional<AppUser> findByAccountDetails_Email(String email);
 }

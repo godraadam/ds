@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import dev.godraadam.dsassingment.exception.ResourceNotFoundException;
 import dev.godraadam.dsassingment.model.Device;
 import dev.godraadam.dsassingment.model.Sensor;
-import dev.godraadam.dsassingment.repo.DeviceRepo;
 import dev.godraadam.dsassingment.repo.SensorRepo;
 
 @Service
@@ -43,7 +42,9 @@ public class SensorService {
 
     public void deleteSensor(Long sensorId) {
         Optional<Sensor> sensorOptional = sensorRepo.findById(sensorId);
-        if (sensorOptional.isEmpty()) return;
+        if (sensorOptional.isEmpty()) {
+            return;
+        }
         Device device = sensorOptional.get().getMonitoredDevice();
         device.setSensor(null);
         deviceService.saveDevice(device);

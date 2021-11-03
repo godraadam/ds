@@ -17,33 +17,26 @@ import dev.godraadam.dsassingment.model.UserRole;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Autowired
-	private UserDetailsService userDetailsService;
-
-	@Autowired
     @Override
-	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-	}
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
-            .authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .antMatchers("/register").permitAll()
-            .antMatchers("/api/**").hasAnyRole(UserRole.USER.name(), UserRole.ADMIN.name())
-            .antMatchers("/admin/api/**").hasRole(UserRole.ADMIN.name())
-            .anyRequest()
-            .authenticated()
-            .and()
-            .httpBasic();
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/login").permitAll()
+                .antMatchers("/register").permitAll().antMatchers("/api/**")
+                .hasAnyRole(UserRole.USER.name(), UserRole.ADMIN.name()).antMatchers("/admin/api/**")
+                .hasRole(UserRole.ADMIN.name()).anyRequest().authenticated().and().httpBasic();
     }
 
     @Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+    PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 }
