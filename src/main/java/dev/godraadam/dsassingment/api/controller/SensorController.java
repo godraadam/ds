@@ -1,6 +1,7 @@
 package dev.godraadam.dsassingment.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import dev.godraadam.dsassingment.api.dto.SensorDTO;
 import dev.godraadam.dsassingment.service.SensorService;
 
 @RestController
+@CrossOrigin
 public class SensorController {
 
     @Autowired

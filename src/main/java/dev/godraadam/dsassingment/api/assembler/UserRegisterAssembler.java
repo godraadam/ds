@@ -18,7 +18,6 @@ public class UserRegisterAssembler implements GeneralAssembler<AppUser, UserRegi
 
     @Override
     public UserRegisterDTO createDTO(AppUser model) {
-        // TODO
         // Will probably never need backwards mapping
         return null;
     }
