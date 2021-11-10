@@ -31,12 +31,12 @@ build:
 test:
   stage: test
   script:
-    - ./gradlew check
+    - ./gradlew test
 
 lint:
   stage: lint
   script:
-    - ./gradlew check
+    - ./gradlew checkStyleMain
 
 # deploy:
 #   stage: deploy
