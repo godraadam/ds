@@ -15,18 +15,23 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(UserNotFoundException.class)
-    public void handleUserNotFound() {}
+    public void handleUserNotFound() {
+
+    }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(InvalidCredentialsException.class)
-    public void handleIncorrectPassword() {}
+    public void handleIncorrectPassword() {
+    }
 
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(UserAlreadyExistsException.class)
-    public void handleUsernameTaken() {}
+    public void handleUsernameTaken() {
+    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
-    public void handleResourceNotFound() {}
-    
+    public void handleResourceNotFound() {
+    }
+
 }

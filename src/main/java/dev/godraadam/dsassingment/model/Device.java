@@ -6,6 +6,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.lang.Nullable;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,5 +26,6 @@ public class Device extends BaseModel {
 
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "sensor_id")
+    @Nullable
     private Sensor sensor;
 }

@@ -24,7 +24,9 @@ public class DeviceAssembler implements GeneralAssembler<Device, DeviceDTO> {
         dto.setAvgConsumption(model.getAvgConsumption());
         dto.setDescription(model.getDescription());
         dto.setMaxConsumption(model.getMaxConsumption());
-        dto.setSensorId(model.getSensor().getId());
+        if (model.getSensor() != null) {
+            dto.setSensorId(model.getSensor().getId());
+        }
         dto.setUserId(model.getOwner().getId());
         dto.setDeviceId(model.getId());
         return dto;
