@@ -38,7 +38,12 @@ lint:
   script:
     - ./gradlew checkStyleMain
 
-# deploy:
-#   stage: deploy
-#   script:
-#     - ./deploy
+deploy:
+  stage: deploy
+  only : main
+  image : ruby:2.4
+  script:
+    - apt-get update
+    = apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=ds-assignment-ga --api-key=$HEROKU_API_KEY
