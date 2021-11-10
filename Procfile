@@ -1,1 +1,1 @@
-web : ./gradlew bootRun
+java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/*.jar
