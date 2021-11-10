@@ -10,14 +10,14 @@ import dev.godraadam.dsassingment.service.AppUserDetailsService;
 
 @Configuration
 public class AppConfig {
-    
+
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-	UserDetailsService userDetailsService() {
-		return new AppUserDetailsService();
-	}
+    UserDetailsService userDetailsService() {
+        return new AppUserDetailsService();
+    }
 }
