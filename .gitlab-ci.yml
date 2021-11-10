@@ -1,5 +1,12 @@
 image: openjdk:11
 
+variables:
+  DB_IP : ec2-52-209-246-87.eu-west-1.compute.amazonaws.com
+  DB_PORT : 5432
+  DB_USER : ahztgqmjarqktn
+  DB_PASSWORD : 5eaba1ff094dc957efdda479b7ac7219885fab7a20c63cb05617acd6844a820d
+  DB_NAME : d45go7pldb1o92
+
 stages:
   - lint
   - build
