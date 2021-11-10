@@ -20,6 +20,14 @@ application {
     mainClass = 'dev.godraadam.dsassingment.DsAssingmentApplication'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'dev.godraadam.dsassingment.DsAssingmentApplication'
+        )
+    }
+}
+
 repositories {
 	mavenCentral()
 }
