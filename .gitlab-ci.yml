@@ -40,7 +40,8 @@ lint:
 
 deploy:
   stage: deploy
-  only : main
+  only : 
+    - main
   image : ruby:2.4
   script:
     - apt-get update
