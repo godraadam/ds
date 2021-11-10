@@ -44,6 +44,6 @@ deploy:
   image : ruby:2.4
   script:
     - apt-get update
-    = apt-get install -y ruby-dev
+    - apt-get install -y ruby-dev
     - gem install dpl
     - dpl --provider=heroku --app=ds-assignment-ga --api-key=$HEROKU_API_KEY
