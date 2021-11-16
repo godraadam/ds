@@ -1,5 +1,6 @@
 package dev.godraadam.dsassingment.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,11 @@ public class UserService {
 
     public void deleteUserById(Long id) {
         userRepo.deleteById(id);
+    }
+
+    public List<AppUser> findAllUsers() {
+        //should not do this
+        return userRepo.findAll();
     }
 
     public AppUser updateUser(AppUser updatedUser) {

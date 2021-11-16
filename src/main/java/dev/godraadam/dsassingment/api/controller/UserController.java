@@ -1,5 +1,7 @@
 package dev.godraadam.dsassingment.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,6 +64,11 @@ public class UserController {
     @PutMapping("/api/user")
     public UserDetailsDTO updateUser(@RequestBody UserDetailsDTO dto) {
         return userDetailsAssembler.createDTO(userService.updateUser(userDetailsAssembler.createModel(dto)));
+    }
+
+    @GetMapping("/admin/api/user/ls")
+    public List<UserDetailsDTO> getAllUsers() {
+        return userDetailsAssembler.createDTOList(userService.findAllUsers());
     }
 
 }

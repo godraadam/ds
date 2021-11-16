@@ -13,7 +13,7 @@ public class DeviceAssembler implements GeneralAssembler<Device, DeviceDTO> {
         Device device = new Device();
         device.setDescription(dto.getDescription());
         device.setId(dto.getDeviceId());
-        // maybe maxConsumption?
+        device.setMaxConsumption(dto.getMaxConsumption());
         return device;
     }
 
