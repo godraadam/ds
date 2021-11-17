@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @CrossOrigin
 @Controller
 public class LandingPage {
-    
+
     @GetMapping("/")
     public String hello() {
         return "Energy App Server is running";
