@@ -20,10 +20,10 @@ application {
     mainClass = 'dev.godraadam.dsassingment.DsAssingmentApplication'
 }
 
-jar {
+bootJar {
     manifest {
         attributes(
-                'Main-Class': 'dev.godraadam.dsassingment.DsAssingmentApplication'
+                'Start-Class': 'dev.godraadam.dsassingment.DsAssingmentApplication'
         )
     }
 }
