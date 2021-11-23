@@ -19,6 +19,10 @@ public class SensorService {
     @Autowired
     private DeviceService deviceService;
 
+    public Sensor getSensorById(Long id) {
+        return sensorRepo.findById(id).orElseThrow(ResourceNotFoundException::new);
+    }
+
     public Sensor getSensorForDevice(Long deviceId) {
         try {
             Device device = deviceService.getDeviceById(deviceId);

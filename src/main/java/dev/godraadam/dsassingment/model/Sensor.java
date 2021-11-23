@@ -3,6 +3,7 @@ package dev.godraadam.dsassingment.model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -19,6 +20,6 @@ public class Sensor extends BaseModel {
     private Double maxValue;
 
     // list of measurement records (one every hour)
-    @OneToMany(mappedBy = "sensor")
+    @OneToMany(mappedBy = "sensor", fetch = FetchType.EAGER)
     private List<Measurement> measurements;
 }

@@ -11,4 +11,5 @@ public class MeasurementDTO {
     private Long sensorId;
     private Double value;
     private LocalDateTime timestamp;
+    private Long id;
 }
