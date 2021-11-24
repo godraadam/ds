@@ -1,5 +1,7 @@
 package dev.godraadam.dsassingment.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,12 +25,17 @@ public class SensorController {
     @Autowired
     private SensorService sensorService;
 
-    @GetMapping("/api/sensor/{deviceId}")
+    @GetMapping("/api/sensor/device/{deviceId}")
     public SensorDTO getSensorForDevice(@PathVariable Long deviceId) {
         return sensorAssembler.createDTO(sensorService.getSensorForDevice(deviceId));
     }
 
-    @PostMapping("/admin/api/sensor/add/deviceId")
+    @GetMapping("/api/sensor/user/{userId}")
+    public List<SensorDTO> getSensorsForUser(@PathVariable Long userId) {
+        return sensorAssembler.createDTOList(sensorService.getSensorsForUser(userId));
+    }
+
+    @PostMapping("/admin/api/sensor/add/{deviceId}")
     public SensorDTO addSensorToDevice(@RequestBody SensorDTO dto, @PathVariable Long deviceId) {
         return sensorAssembler.createDTO(sensorService.addSensorToDevice(sensorAssembler.createModel(dto), deviceId));
     }

@@ -2,7 +2,6 @@ package dev.godraadam.dsassingment.api.dto;
 
 import java.util.List;
 
-import dev.godraadam.dsassingment.model.Measurement;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +13,5 @@ public class SensorDTO {
     private Long deviceId;
     private String description;
     private Double maxValue;
-    private List<Measurement> measurements;
+    private List<MeasurementDTO> measurements;
 }

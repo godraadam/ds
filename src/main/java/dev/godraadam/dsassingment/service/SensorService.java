@@ -1,5 +1,6 @@
 package dev.godraadam.dsassingment.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,10 @@ public class SensorService {
         } catch (ResourceNotFoundException e) {
             throw e;
         }
+    }
+
+    public List<Sensor> getSensorsForUser(Long userId) {
+        return sensorRepo.findAllByMonitoredDevice_Owner_Id(userId);
     }
 
     public Sensor addSensorToDevice(Sensor sensor, Long deviceId) {
