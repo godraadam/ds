@@ -9,5 +9,7 @@ import dev.godraadam.dsassingment.model.Device;
 
 @Repository
 public interface DeviceRepo extends JpaRepository<Device, Long> {
+    
+    @SuppressWarnings("checkstyle:MethodName")
     List<Device> findAllByOwner_Id(Long id);
 }
