@@ -33,9 +33,7 @@ public class DeviceService {
     }
 
     public List<Device> getAllDevicesForUser(Long userId) {
-        Optional<AppUser> userFromRepoOptional = userRepo.findById(userId);
-        AppUser userFromRepo = userFromRepoOptional.orElseThrow(UserNotFoundException::new);
-        return userFromRepo.getDevices();
+        return deviceRepo.findAllByOwner_Id(userId);
     }
 
     public void removeDevice(Long deviceId) {
