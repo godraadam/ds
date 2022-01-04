@@ -6,6 +6,7 @@ variables:
   DB_USER : ahztgqmjarqktn
   DB_PASSWORD : 5eaba1ff094dc957efdda479b7ac7219885fab7a20c63cb05617acd6844a820d
   DB_NAME : d45go7pldb1o92
+  APP_NAME : ds-assignment-ga
 
 stages:
   - lint
@@ -49,7 +50,20 @@ build_image:
     - docker:dind
   stage : build
   script:
-    - docker login -u $CI_DEPLOY_USER -P $CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
     - docker pull $CI_REGISTRY_IMAGE:latest || true
     - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:latest
+    
+deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $CI_DEPLOY_USER -p $CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:latest
+    - docker tag $CI_REGISTRY_IMAGE:latest $HEROKU_REGISTRY_IMAGE:latest
+    - docker login --username=_ --password=$HEROKU_API_KEY $HEROKU_REGISTRY
+    - docker push $HEROKU_REGISTRY_IMAGE:latest
+    - docker run --rm -e HEROKU_API_KEY=$HEROKU_API_KEY wingrunr21/alpine-heroku-cli container:release web --app $APP_NAME
