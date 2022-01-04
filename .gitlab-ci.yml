@@ -13,6 +13,7 @@ stages:
   - build
   - test
   - build_image
+  - deploy
 
 before_script:
   - chmod +x ./gradlew
