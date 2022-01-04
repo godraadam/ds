@@ -11,11 +11,9 @@ stages:
   - lint
   - build
   - test
-  - deploy
+  - build_image
 
 before_script:
-#  - echo `pwd` # debug
-#  - echo "$CI_BUILD_NAME, $CI_BUILD_REF_NAME $CI_BUILD_STAGE" # debug
   - chmod +x ./gradlew
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
@@ -44,14 +42,14 @@ lint:
   stage: lint
   script:
     - ./gradlew checkStyleMain
-
-deploy:
-  stage: deploy
-  only : 
-    - main
-  image : ruby:2.4
+    
+build_image:
+  image: docker:latest
+  services: 
+    - docker:dind
+  stage : build
   script:
-    - apt-get update
-    - apt-get install -y ruby-dev
-    - gem install dpl
-    - dpl --provider=heroku --app=ds-assignment-ga --api-key=$HEROKU_API_KEY
+    - docker login -u $CI_DEPLOY_USER -P $CI_DEPLOY_PASSWORD $CI_REGISTRY
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE:latest
