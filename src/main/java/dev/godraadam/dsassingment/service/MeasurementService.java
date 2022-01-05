@@ -28,8 +28,6 @@ public class MeasurementService {
     @Autowired
     private SensorService sensorService;
 
-    private Logger logger = LoggerFactory.getLogger(MeasurementService.class);
-
     @Autowired
     private MeasurementRepo measurementRepo;
 
@@ -37,12 +35,10 @@ public class MeasurementService {
     private SimpMessagingTemplate template;
 
     public List<Measurement> getMeasurementsForSensor(Long sensorId) {
-        logger.info("received A");
         return sensorService.getSensorById(sensorId).getMeasurements();
     }
 
     public List<Measurement> getMeasurementsForSensorBetween(Long sensorId, LocalDateTime from, LocalDateTime to) {
-        logger.info("received B");
         return measurementRepo.findAllBySensorIdAndTimestampBetween(sensorId, from, to);
     }
 
@@ -61,9 +57,10 @@ public class MeasurementService {
         objectMapper.findAndRegisterModules();
         ClientMessageDTO dto = new ClientMessageDTO();
         try {
+            System.out.println("new measurement, sending..");
             dto.setEvent("new_measurement");
             dto.setContent(objectMapper.writeValueAsString(measurementAssembler.createDTO(measurement)));
-            template.convertAndSend("client/return/" + user.getId(), objectMapper.writeValueAsString(dto));
+            template.convertAndSend("/client/return/" + user.getId(), dto);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -75,12 +72,10 @@ public class MeasurementService {
             Double delta = (measurement.getValue() - lastMeasurement.getValue()) / (lastMeasurement.getTimestamp().until(measurement.getTimestamp(), ChronoUnit.SECONDS));
             if (delta > sensor.getMaxValue()) {
                 dto.setEvent("power_peak");
-                try {
-                    dto.setContent("{\"sensor_id\":" + sensor.getId() + ", \n\"value\":" + measurement.getValue() + "}");
-                    template.convertAndSend("client/return/" + user.getId(), objectMapper.writeValueAsString(dto));
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
+                System.out.println(("power peak"));
+                dto.setContent("{\"sensor_id\":" + sensor.getId() + ", \n\"value\":" + measurement.getValue() + "}");
+                template.convertAndSend("/client/return/" + user.getId(), dto);
+
             }
         }
         System.out.println(measurement.getId());
