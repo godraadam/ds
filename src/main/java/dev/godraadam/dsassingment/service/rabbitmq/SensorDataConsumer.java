@@ -27,6 +27,7 @@ public class SensorDataConsumer {
     public void receive(@Payload String body) {
         System.out.println(body);
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         MeasurementDTO dto;
         try {
             dto = objectMapper.readValue(body, MeasurementDTO.class);

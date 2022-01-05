@@ -17,8 +17,8 @@ public class MeasurementAssembler implements GeneralAssembler<Measurement, Measu
     public Measurement createModel(MeasurementDTO dto) {
         Measurement model = new Measurement();
         model.setTimestamp(dto.getTimestamp());
-        model.setValue(model.getValue());
-        model.setSensor(sensorService.getSensorById(dto.getId()));
+        model.setValue(dto.getValue());
+        model.setSensor(sensorService.getSensorById(dto.getSensorId()));
         return model;
     }
 

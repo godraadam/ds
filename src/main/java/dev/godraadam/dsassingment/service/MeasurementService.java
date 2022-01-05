@@ -58,6 +58,7 @@ public class MeasurementService {
 
         //want to send out new measurment to client eagerely
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.findAndRegisterModules();
         ClientMessageDTO dto = new ClientMessageDTO();
         try {
             dto.setEvent("new_measurement");
@@ -82,6 +83,7 @@ public class MeasurementService {
                 }
             }
         }
+        System.out.println(measurement.getId());
         return  measurementRepo.save(measurement);
     }
 
