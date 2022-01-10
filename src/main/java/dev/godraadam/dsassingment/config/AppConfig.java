@@ -1,5 +1,7 @@
 package dev.godraadam.dsassingment.config;
 
+import com.googlecode.jsonrpc4j.spring.AutoJsonRpcServiceImplExporter;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,4 +22,10 @@ public class AppConfig {
     UserDetailsService userDetailsService() {
         return new AppUserDetailsService();
     }
+
+    @Bean
+    public static AutoJsonRpcServiceImplExporter autoJsonRpcServiceImplExporter() {
+        return new AutoJsonRpcServiceImplExporter();
+    }
+
 }

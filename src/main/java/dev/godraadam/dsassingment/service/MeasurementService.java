@@ -1,8 +1,10 @@
 package dev.godraadam.dsassingment.service;
 
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 import dev.godraadam.dsassingment.api.assembler.MeasurementAssembler;
 import dev.godraadam.dsassingment.api.dto.ws.ClientMessageDTO;
 import dev.godraadam.dsassingment.model.AppUser;
+import dev.godraadam.dsassingment.model.Device;
 import dev.godraadam.dsassingment.model.Measurement;
 import dev.godraadam.dsassingment.model.Sensor;
 import dev.godraadam.dsassingment.repo.MeasurementRepo;
@@ -28,6 +31,9 @@ public class MeasurementService {
 
     @Autowired
     private MeasurementRepo measurementRepo;
+
+    @Autowired
+    private DeviceService deviceService;
 
     @Autowired
     private SimpMessagingTemplate template;
@@ -76,8 +82,25 @@ public class MeasurementService {
 
             }
         }
-        System.out.println(measurement.getId());
         return  measurementRepo.save(measurement);
+    }
+
+    public List<Double> getBaselineForUser(Long userId, LocalDateTime timestamp) {
+        List<Device> devices = deviceService.getAllDevicesForUser(userId);
+        final int hoursInADay = 24;
+        Double[] hoursOfDay = new Double[hoursInADay];
+        for (var device : devices) {
+            List<Measurement> measurements = measurementRepo.findAllBySensorIdAndTimestampBetween(device.getSensor().getId(), timestamp, LocalDateTime.now());
+            for (var measurement : measurements) {
+                int hour = measurement.getTimestamp().getHour();
+                hoursOfDay[hour] += measurement.getValue();
+            }
+        }
+        List<Double> result = new ArrayList<>();
+        for (int i = 0; i < hoursInADay; i++) {
+            result.add(hoursOfDay[i] / Duration.between(timestamp, LocalDateTime.now()).toDays());
+        }
+        return result;
     }
 
 }

@@ -46,7 +46,7 @@ dependencies {
 	
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
-
+	implementation 'com.github.briandilley.jsonrpc4j:jsonrpc4j:1.6'
 
 }
 
